@@ -1,0 +1,21 @@
+{
+  "name": "nextjs-mox-calendar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kysonic/nextjs-mobx-calendar.git",
+  "author": "Miroshnichenko Anton <anton.miroshnichenko@omnigon.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "flow": "^0.2.3",
+    "mobx": "^5.9.0",
+    "next": "^8.0.3",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}
