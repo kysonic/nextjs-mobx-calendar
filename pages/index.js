@@ -1,12 +1,11 @@
 import React from 'react';
-import Header from '../components/templates/Header/Header';
+import Layout from '../components/templates/layouts/default';
 
 const Index = () => {
     return (
-        <div>
-            <Header></Header>
-            Content
-        </div>
+        <Layout title={'Welcome!'}>
+
+        </Layout>
     );
 };
 
