@@ -1,11 +1,20 @@
-import {observable, action, configure} from 'mobx';
-import fetch from 'isomorphic-unfetch';
+import {observable, action} from 'mobx';
+import axios from 'axios';
+
+const BASE_URL = process.env.BASE_URL;
 
 class Navigation {
-    constructor(appStore) {
-        this.appStore = appStore;
-    }
     @observable items = [];
+
+    constructor(items) {
+        this.items = items;
+    }
+
+    @action
+    async fetchItems() {
+        const response = await axios.get(`${BASE_URL || ''}/static/data/navigation.json`);
+        this.items = response.data;
+    }
 
     @action
     setItems(items) {

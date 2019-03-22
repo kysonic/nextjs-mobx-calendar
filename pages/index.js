@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/templates/layouts/default';
 
-const Index = () => {
+const Index = (props) => {
     return (
         <Layout title={'Welcome!'}>
 
