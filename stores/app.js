@@ -1,7 +1,6 @@
 import {configure} from 'mobx';
 import Navigation from './navigation';
 import {useStaticRendering} from 'mobx-react';
-import {toJS} from 'mobx';
 
 configure({ enforceActions: "observed" });
 

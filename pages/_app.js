@@ -6,7 +6,7 @@ import { Provider } from 'mobx-react';
 class CalendarApp extends App {
     static async getInitialProps(appContext) {
         const appStore = initializeStore();
-        // Initizialize all stores
+        // Initialize all stores
         await appStore.navigation.fetchItems();
         // Get app props
         const appProps = await App.getInitialProps(appContext);

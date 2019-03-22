@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import Header from '../header/Header';
+import Header from '../ui/Header';
 import {inject} from 'mobx-react';
-import scss from './default.scss';
 
 export default inject('appStore')((props) => (
     <div>
