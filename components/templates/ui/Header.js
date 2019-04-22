@@ -4,7 +4,25 @@ import {observer} from 'mobx-react';
 const HeaderLinkItems = (title, items) => (
     <nav>
         <span className="title">{title}</span>
-        <span className="sub-items">{items.map(link => <HeaderLink key={link.id} link={link} />)}</span>
+        <ul className="sub-items">{items.map(link => <li><HeaderLink key={link.id} link={link} /></li>)}</ul>
+        <style jsx>
+            {`
+                .title {
+                    cursor: pointer;
+                }
+                ul.sub-items {
+                    display: none;
+                    position: absolute;
+                    list-style: none;
+                    margin: 0;
+                    padding: 10px;
+                    background: #ccc;
+                }
+                ul.sub-items li {
+                    margin: 5px 0;
+                }
+            `}
+        </style>
     </nav>
 );
 
@@ -18,11 +36,38 @@ const HeaderLink = ({link}) => link.items ? HeaderLinkItems(link.title, link.ite
 const Header = observer((props) => {
     return (
         <nav>
-            {
-                props.store && props.store.items && props.store.items.map((link) => (
-                    <HeaderLink key={link.id} link={link} />
-                ))
-            }
+            <ul>
+                {
+                    props.store && props.store.items && props.store.items.map((link) => (
+                        <li><HeaderLink key={link.id} link={link} /></li>
+                    ))
+                }
+            </ul>
+            <style jsx>
+                {`
+                    nav {
+                        width: 100%;
+                        height: 40px;
+                        background: #ccc;
+                        padding: 10px;
+                    }
+                    ul {
+                        list-style: none;
+                        display: inline-block;
+                    }
+                    ul li {
+                        display: inline-block;
+                        margin: 0 0 0 10px;
+                    }
+                `}
+            </style>
+            <style>
+                {`
+                     ul li:hover .sub-items {
+                        display: block;
+                     }
+                `}
+            </style>
         </nav>
     );
 });
