@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import MonthSwitcher from './month-switcher';
 
-export default class ComponentName extends Component {
+export default class Calendar extends Component {
     render() {
-        console.log(this.props.appStore);
+        const {appStore: {date}} = this.props;
         return (
             <div className="calendar">
-                <MonthSwitcher></MonthSwitcher>
+                <MonthSwitcher dateStore={date}></MonthSwitcher>
                 <style jsx>
                     {`
 

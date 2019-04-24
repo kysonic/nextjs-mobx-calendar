@@ -13,7 +13,7 @@ class Date {
     }
 
     @computed get month() {
-        return this.date.getMonth();
+        return this.date.getMonth() + 1;
     }
 
     @computed get day() {

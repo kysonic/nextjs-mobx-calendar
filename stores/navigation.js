@@ -5,6 +5,7 @@ const BASE_URL = process.env.BASE_URL;
 
 class Navigation {
     @observable items = [];
+    @observable isInit = false;
 
     constructor(navigation) {
         this.items = navigation ? navigation.items : [];
@@ -12,13 +13,22 @@ class Navigation {
 
     @action
     async fetchItems() {
+        if (this.isInit) {
+            return this.items;
+        }
         const response = await axios.get(`${BASE_URL || ''}/static/data/navigation.json`);
-        this.items = response.data;
+        this.setItems(response.data);
+        this.setIsInit(true);
     }
 
     @action
     setItems(items) {
         this.items = items;
+    }
+
+    @action
+    setIsInit(isInit) {
+        this.isInit = isInit;
     }
 }
 

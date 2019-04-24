@@ -12,11 +12,10 @@
 import React from 'react';
 import {MONTHS} from '../../../consts/months';
 
-const MonthSwitcher = (props) => {
-
+const MonthSwitcher = ({dateStore}) => {
     return (
         <div className="month-switcher">
-
+            {MONTHS[dateStore.month - 1]}
         </div>
     );
 };
