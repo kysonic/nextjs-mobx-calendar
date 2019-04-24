@@ -1,7 +1,7 @@
 import {observable, computed, action} from 'mobx';
 
 class Date {
-    @observable date;
+    @observable.ref date;
 
     constructor(date) {
         this.setDate(date);
@@ -12,15 +12,27 @@ class Date {
         this.date = date;
     }
 
-    @computed get month() {
-        return this.date.getMonth() + 1;
+    @action incMonth() {
+        this.setMonth(this.month + 1);
     }
 
-    @computed get day() {
+    @action decMonth() {
+        this.setMonth(this.month - 1);
+    }
+
+    @action setMonth(month) {
+        this.date.setMonth(month);
+    }
+
+    @computed.struct get month() {
+        return this.date.getMonth();
+    }
+
+    @computed.struct get day() {
         return this.date.getDay();
     }
 
-    @computed get year() {
+    @computed.struct get year() {
         return this.date.getFullYear();
     }
 }
