@@ -10,7 +10,6 @@ class CalendarApp extends App {
         await appStore.navigation.fetchItems();
         // Get app props
         const appProps = await App.getInitialProps(appContext);
-
         return {
             ...appProps,
             initialState: appStore
@@ -19,7 +18,7 @@ class CalendarApp extends App {
 
     constructor(props) {
         super(props);
-        this.appStore = props.initialState;
+        this.appStore = initializeStore(props.initialState);
     }
 
     render() {

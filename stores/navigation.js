@@ -6,8 +6,8 @@ const BASE_URL = process.env.BASE_URL;
 class Navigation {
     @observable items = [];
 
-    constructor(items) {
-        this.items = items;
+    constructor(navigation) {
+        this.items = navigation ? navigation.items : [];
     }
 
     @action

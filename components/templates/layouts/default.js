@@ -8,15 +8,16 @@ export default inject('appStore')((props) => (
             <title>{props.title}</title>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
-        <Header store={props.appStore && props.appStore.navigation}  />
+        <Header store={props.appStore ? props.appStore.navigation : null}  />
         <div className="content">
-            {props.children}
+            {props.children && typeof props.children === 'function' ? props.children(props.appStore) : props.children}
         </div>
         <style jsx global>
             {`
                 body {
                     margin: 0;
                     padding: 0;
+                    font-family: 'Open Sans', sans-serif;
                 }
             `}
         </style>
