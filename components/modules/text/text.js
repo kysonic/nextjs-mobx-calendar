@@ -6,6 +6,7 @@ const Text = observer(({textStore}) => {
         <div className="text">
             {textStore.text}
             <style jsx>{`
+                padding: 20px;
                 color: #aaa;
             `}</style>
         </div>

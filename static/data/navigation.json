@@ -17,12 +17,12 @@
       {
         "id": "about-contacts",
         "title": "Contacts",
-        "href": "contacts"
+        "href": "#contacts"
       },
       {
         "id": "about-team",
         "title": "Team",
-        "href": "team"
+        "href": "#team"
       }
     ]
   }
