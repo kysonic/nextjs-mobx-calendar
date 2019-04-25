@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {observer} from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 
 const HeaderLinkItems = (title, items) => (
     <nav>
@@ -33,12 +33,12 @@ const HeaderLink = ({link}) => link.items ? HeaderLinkItems(link.title, link.ite
         </Link>
     );
 
-const Header = observer(({store}) => {
+const Header = inject('appStore')(observer(({appStore: {navigationStore}}) => {
     return (
         <nav>
             <ul>
                 {
-                    store && store.items && store.items.map((link) => (
+                    navigationStore && navigationStore.items && navigationStore.items.map((link) => (
                         <li key={link.id} ><HeaderLink link={link} /></li>
                     ))
                 }
@@ -80,6 +80,6 @@ const Header = observer(({store}) => {
             </style>
         </nav>
     );
-});
+}));
 
 export default Header;
