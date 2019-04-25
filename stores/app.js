@@ -10,8 +10,8 @@ useStaticRendering(isServer);
 
 class App {
     constructor(initialData) {
-        this.navigation = new NavigationStore(initialData && initialData.navigation);
-        this.date = new DateStore(new Date());
+        this.navigationStore = new NavigationStore(initialData && initialData.navigationStore);
+        this.dateStore = new DateStore(new Date());
     }
 }
 

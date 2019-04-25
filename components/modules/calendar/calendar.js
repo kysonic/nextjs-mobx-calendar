@@ -3,10 +3,10 @@ import MonthSwitcher from './month-switcher';
 
 export default class Calendar extends Component {
     render() {
-        const {appStore: {date}} = this.props;
+        const {appStore: {dateStore}} = this.props;
         return (
             <div className="calendar">
-                <MonthSwitcher dateStore={date}></MonthSwitcher>
+                <MonthSwitcher dateStore={dateStore}></MonthSwitcher>
                 <style jsx>
                     {`
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const BASE_URL = process.env.BASE_URL;
 
-class Navigation {
+class NavigationStore {
     @observable items = [];
     @observable isInit = false;
 
@@ -32,4 +32,4 @@ class Navigation {
     }
 }
 
-export default Navigation;
+export default NavigationStore;

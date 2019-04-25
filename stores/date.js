@@ -1,15 +1,19 @@
 import {observable, computed, action} from 'mobx';
 
-class Date {
-    @observable.ref date;
+class DateStore {
+    @observable ISODate;
 
     constructor(date) {
-        this.setDate(date);
+        this.setISODate(date);
     }
 
     @action
-    setDate(date) {
-        this.date = date;
+    setISODate(ISODate) {
+        this.ISODate = ISODate;
+    }
+
+    @computed get date() {
+        return new Date(Date.parse(this.ISODate));
     }
 
     @action incMonth() {
@@ -22,19 +26,20 @@ class Date {
 
     @action setMonth(month) {
         this.date.setMonth(month);
+        this.setISODate(this.date.toISOString());
     }
 
-    @computed.struct get month() {
+    @computed get month() {
         return this.date.getMonth();
     }
 
-    @computed.struct get day() {
+    @computed get day() {
         return this.date.getDay();
     }
 
-    @computed.struct get year() {
+    @computed get year() {
         return this.date.getFullYear();
     }
 }
 
-export default Date;
+export default DateStore;

@@ -11,8 +11,9 @@
 
 import React from 'react';
 import {MONTHS} from '../../../consts/months';
+import {observer} from 'mobx-react';
 
-const MonthSwitcher = ({dateStore}) => {
+const MonthSwitcher = observer(({dateStore}) => {
     const prevMonth = () => {
         dateStore.decMonth();
     }
@@ -44,6 +45,6 @@ const MonthSwitcher = ({dateStore}) => {
             </style>
         </div>
     );
-};
+});
 
 export default MonthSwitcher;

@@ -7,7 +7,7 @@ class CalendarApp extends App {
     static async getInitialProps(appContext) {
         const appStore = initializeStore();
         // Initialize all stores
-        await appStore.navigation.fetchItems();
+        await appStore.navigationStore.fetchItems();
         // Get app props
         const appProps = await App.getInitialProps(appContext);
         return {
