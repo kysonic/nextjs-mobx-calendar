@@ -33,6 +33,7 @@ const MonthSwitcher = observer(({dateStore}) => {
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        color: #666;
                     }
                     .month {
                         text-transform: uppercase;

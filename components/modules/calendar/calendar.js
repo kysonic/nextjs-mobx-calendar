@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MonthSwitcher from './month-switcher';
+import CalendarTable from './calendar-table';
 
 export default class Calendar extends Component {
     render() {
@@ -7,6 +8,7 @@ export default class Calendar extends Component {
         return (
             <div className="calendar">
                 <MonthSwitcher dateStore={dateStore}></MonthSwitcher>
+                <CalendarTable dateStore={dateStore}></CalendarTable>
                 <style jsx>
                     {`
 
