@@ -2,14 +2,11 @@ import {observable, computed, action} from 'mobx';
 
 class DateStore {
     @observable ISODate;
+    @observable ISODateToday;
 
     constructor(date) {
         this.setISODate(date);
-    }
-
-    @action
-    setISODate(ISODate) {
-        this.ISODate = ISODate;
+        this.setISODateToday(date);
     }
 
     @computed get date() {
@@ -28,6 +25,18 @@ class DateStore {
         return this.date.getFullYear();
     }
 
+    @computed get monthToday() {
+        return this.dateToday.getMonth();
+    }
+
+    @computed get dayToday() {
+        return this.dateToday.getDate();
+    }
+
+    @computed get yearToday() {
+        return this.dateToday.getFullYear();
+    }
+
     @computed get daysCount() {
         return new Date(this.year, this.month + 1, 0).getDate();
     }
@@ -35,6 +44,20 @@ class DateStore {
     @computed get firstMonthDay() {
         const day = new Date(this.year, this.month, 1).getDay();
         return day ? day : 7;
+    }
+
+    @computed get dateToday() {
+        return new Date(this.ISODateToday);
+    }
+
+    @action
+    setISODate(ISODate) {
+        this.ISODate = ISODate;
+    }
+
+    @action
+    setISODateToday(ISODate) {
+        this.ISODateToday = ISODate;
     }
 
     @action incMonth() {

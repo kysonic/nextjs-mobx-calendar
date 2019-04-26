@@ -12,13 +12,19 @@
 import React from 'react';
 import {DAYS, DAYS_IN_MONTH, DAYS_IN_WEEK} from '../../../consts/months';
 import {observer} from 'mobx-react';
+import CalendarCell from './calendar-cell';
 
 const CalendarTable = observer(({dateStore}) => {
     const drawNumber = (index) => {
         return index >= dateStore.firstMonthDay && index - dateStore.firstMonthDay < dateStore.daysCount ? (index - dateStore.firstMonthDay) + 1 : '';
     };
-    const getRows = () => {
+    const getRowsCount = () => {
        return Math.ceil(DAYS_IN_MONTH / DAYS_IN_WEEK) + (dateStore.firstMonthDay === 7 ? 1 : 0);
+    };
+    const isToday = (day) => {
+       return (dateStore.year === dateStore.yearToday) &&
+              (dateStore.month === dateStore.monthToday) &&
+              (day === dateStore.dayToday)
     };
     return (
         <table className="calendar-table">
@@ -29,16 +35,43 @@ const CalendarTable = observer(({dateStore}) => {
             </thead>
             <tbody>
                 {
-                    Array.from({length: getRows()}).map((row, i)=>(
+                    Array.from({length: getRowsCount()}).map((row, i)=>(
                         <tr key={i}>
-                            {Array.from({length: DAYS_IN_WEEK}).map((cell, j)=>(<td key={j}>{drawNumber(j + (i*DAYS_IN_WEEK) + 1)}</td>))}
+                            {Array.from({length: DAYS_IN_WEEK}).map((cell, j)=>{
+                                const number = drawNumber(j + (i*DAYS_IN_WEEK) + 1);
+                                return (
+                                    (
+                                        <td key={j}>
+                                            {number && <CalendarCell isToday={isToday(number)} number={number} />}
+                                        </td>
+                                    )
+                                );
+                            })}
                         </tr>
                     ))
                 }
             </tbody>
             <style jsx>
                 {`
-
+                    .calendar-table {
+                        width: 100%;
+                        height: 100%;
+                    }
+                    thead {
+                        height: 40px;
+                        background-color: #aaa;
+                    }
+                    thead th {
+                        height: 30px;
+                        width: calc(100% / 7);
+                        color: #fff;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    tbody td {
+                        height: 60px;
+                        border: 1px solid #ccc;
+                    }
                 `}
             </style>
         </table>
