@@ -1,9 +1,18 @@
 import React from 'react';
 
-const CalendarCell = (props) => {
+const CalendarCell = ({isToday, number, events}) => {
     return (
-        <div className={`calendar-cell ${props.isToday ? 'is-today' : ''}`}>
-            <div className="day">{props.number}</div>
+        <div className={`calendar-cell ${isToday ? 'is-today' : ''}`}>
+            <div className="day">{number}</div>
+            {events && (
+                <ul className="events">
+                    {events.map((event) => (
+                        <li className="event" key={event.id}>
+                            <div className="title">{event.title}</div>
+                        </li>
+                    ))}
+                </ul>
+            )}
             <style jsx>
                 {`
                     .calendar-cell {
@@ -16,6 +25,13 @@ const CalendarCell = (props) => {
                     }
                     .calendar-cell.is-today {
                         background-color: #eee;
+                    }
+                    .events {
+                        list-style: none;
+                        text-transform: lowercase;
+                        font-size: 11px;
+                        text-align: right;
+                        margin-right: 20px;
                     }
                 `}
             </style>

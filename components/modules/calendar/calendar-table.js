@@ -14,7 +14,7 @@ import {DAYS, DAYS_IN_MONTH, DAYS_IN_WEEK} from '../../../consts/months';
 import {observer} from 'mobx-react';
 import CalendarCell from './calendar-cell';
 
-const CalendarTable = observer(({dateStore}) => {
+const CalendarTable = observer(({dateStore, calendarStore}) => {
     const drawNumber = (index) => {
         return index >= dateStore.firstMonthDay && index - dateStore.firstMonthDay < dateStore.daysCount ? (index - dateStore.firstMonthDay) + 1 : '';
     };
@@ -25,6 +25,9 @@ const CalendarTable = observer(({dateStore}) => {
        return (dateStore.year === dateStore.yearToday) &&
               (dateStore.month === dateStore.monthToday) &&
               (day === dateStore.dayToday)
+    };
+    const getIsoDateForDay = (day) => {
+        return new Date(Date.UTC(dateStore.year, dateStore.month, day, 0, 0, 0)).toISOString();
     };
     return (
         <table className="calendar-table">
@@ -42,7 +45,9 @@ const CalendarTable = observer(({dateStore}) => {
                                 return (
                                     (
                                         <td key={j}>
-                                            {number && <CalendarCell isToday={isToday(number)} number={number} />}
+                                            {number && <CalendarCell events={calendarStore.items[getIsoDateForDay(number + 1)]}
+                                                                     isToday={isToday(number)}
+                                                                     number={number} />}
                                         </td>
                                     )
                                 );
