@@ -1,6 +1,7 @@
 import React from 'react';
+import {observer} from 'mobx-react';
 
-const CalendarCell = ({isToday, number, events}) => {
+const CalendarCell = observer(({isToday, number, events, isoDate, onEventClick = () => {}}) => {
     return (
         <div className={`calendar-cell ${isToday ? 'is-today' : ''}`}>
             <div className="day">{number}</div>
@@ -8,11 +9,12 @@ const CalendarCell = ({isToday, number, events}) => {
                 <ul className="events">
                     {events.map((event) => (
                         <li className="event" key={event.id}>
-                            <div className="title">{event.title}</div>
+                            <div className="title" onClick={()=>onEventClick({event, isoDate})}>{event.title}</div>
                         </li>
                     ))}
                 </ul>
             )}
+            <div className="plus" onClick={()=>onEventClick({event: undefined, isoDate})}>+</div>
             <style jsx>
                 {`
                     .calendar-cell {
@@ -26,7 +28,8 @@ const CalendarCell = ({isToday, number, events}) => {
                     .calendar-cell.is-today {
                         background-color: #eee;
                     }
-                    .events {
+                    .event, .plus {
+                        cursor: pointer;
                         list-style: none;
                         text-transform: lowercase;
                         font-size: 11px;
@@ -37,6 +40,6 @@ const CalendarCell = ({isToday, number, events}) => {
             </style>
         </div>
     );
-};
+});
 
 export default CalendarCell;

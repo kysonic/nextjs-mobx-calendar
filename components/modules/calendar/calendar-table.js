@@ -9,12 +9,17 @@
  * express or implied. See the license agreement for the specific language governing permissions and limitations.
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {DAYS, DAYS_IN_MONTH, DAYS_IN_WEEK} from '../../../consts/months';
 import {observer} from 'mobx-react';
 import CalendarCell from './calendar-cell';
+import Popup from '../popup/popup';
+import CalendarEvent from './calendar-event';
 
-const CalendarTable = observer(({dateStore, calendarStore}) => {
+const isServer = !process.browser;
+let popup = null;
+
+const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}) => {
     const drawNumber = (index) => {
         return index >= dateStore.firstMonthDay && index - dateStore.firstMonthDay < dateStore.daysCount ? (index - dateStore.firstMonthDay) + 1 : '';
     };
@@ -28,6 +33,13 @@ const CalendarTable = observer(({dateStore, calendarStore}) => {
     };
     const getIsoDateForDay = (day) => {
         return new Date(Date.UTC(dateStore.year, dateStore.month, day, 0, 0, 0)).toISOString();
+    };
+    const onEventClick = (eventData) => {
+        setEvent(eventData);
+        popup.open();
+    };
+    const close = () => {
+        popup.close();
     };
     return (
         <table className="calendar-table">
@@ -45,7 +57,9 @@ const CalendarTable = observer(({dateStore, calendarStore}) => {
                                 return (
                                     (
                                         <td key={j}>
-                                            {number && <CalendarCell events={calendarStore.items[getIsoDateForDay(number + 1)]}
+                                            {number && <CalendarCell onEventClick={onEventClick}
+                                                                     events={calendarStore.items[getIsoDateForDay(number + 1)]}
+                                                                     isoDate={getIsoDateForDay(number + 1)}
                                                                      isToday={isToday(number)}
                                                                      number={number} />}
                                         </td>
@@ -56,6 +70,9 @@ const CalendarTable = observer(({dateStore, calendarStore}) => {
                     ))
                 }
             </tbody>
+            {!isServer && <Popup ref={(el) => popup = el}>
+                            <CalendarEvent event={event} close={close} calendarStore={calendarStore} />
+                          </Popup>}
             <style jsx>
                 {`
                     .calendar-table {
@@ -83,4 +100,12 @@ const CalendarTable = observer(({dateStore, calendarStore}) => {
     );
 });
 
-export default CalendarTable;
+const CalendarTableStateProvider = ({dateStore, calendarStore}) => {
+    const [event, setEvent] = useState(0);
+    return <CalendarTable event={event}
+                          setEvent={setEvent}
+                          dateStore={dateStore}
+                          calendarStore={calendarStore} />
+};
+
+export default CalendarTableStateProvider;
