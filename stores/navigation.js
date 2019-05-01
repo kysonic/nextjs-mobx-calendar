@@ -1,18 +1,26 @@
+// @flow
+
 import {observable, action} from 'mobx';
 import axios from 'axios';
 
 const BASE_URL = process.env.BASE_URL;
 
-class NavigationStore {
-    @observable items = [];
-    @observable isInit = false;
+type Item = {
+    id: string,
+    title: string,
+    href: string
+}
 
-    constructor(navigation) {
+class NavigationStore {
+    @observable items: Item[] = [];
+    @observable isInit: boolean = false;
+
+    constructor(navigation: NavigationStore) {
         this.items = navigation ? navigation.items : [];
     }
 
     @action
-    async fetchItems() {
+    async fetchItems(): void {
         if (this.isInit) {
             return this.items;
         }
@@ -22,12 +30,12 @@ class NavigationStore {
     }
 
     @action
-    setItems(items) {
+    setItems(items: Item[]): void {
         this.items = items;
     }
 
     @action
-    setIsInit(isInit) {
+    setIsInit(isInit: boolean): void {
         this.isInit = isInit;
     }
 }

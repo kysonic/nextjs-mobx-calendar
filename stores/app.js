@@ -1,3 +1,5 @@
+// @flow
+
 import {configure} from 'mobx';
 import NavigationStore from './navigation';
 import DateStore from './date';
@@ -5,11 +7,18 @@ import {useStaticRendering} from 'mobx-react';
 
 configure({ enforceActions: "observed" });
 
-const isServer = !process.browser;
+const isServer: boolean = !process.browser;
 useStaticRendering(isServer);
 
+type InitialDataType = {
+    navigationStore: NavigationStore,
+    dateStore: DateStore
+}
+
 class App {
-    constructor(initialData) {
+    navigationStore: NavigationStore;
+    dateStore: DateStore;
+    constructor(initialData: InitialDataType) {
         this.navigationStore = new NavigationStore(initialData && initialData.navigationStore);
         this.dateStore = new DateStore(new Date());
     }
@@ -17,7 +26,7 @@ class App {
 
 export default App;
 
-export function initializeStore(initialData) {
+export function initializeStore(initialData: InitialDataType) {
     if (isServer) {
         return new App(initialData);
     }

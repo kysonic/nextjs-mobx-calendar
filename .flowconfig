@@ -1,0 +1,14 @@
+[include]
+./node_modules/mobx/lib/mobx.js.flow
+./flow-typed/next.js.flow
+
+[ignore]
+.*/node_modules/.*
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
