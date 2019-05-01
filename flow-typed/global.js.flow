@@ -1,0 +1,6 @@
+// @flow
+
+interface Process {
+    browser: boolean;
+    env: any
+}

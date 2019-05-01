@@ -1,29 +1,44 @@
+// @flow
 import {observable, action} from 'mobx';
-import axios from "axios/index";
+import axios, {AxiosResponse} from "axios/index";
 
 const BASE_URL = process.env.BASE_URL;
 
-class CalendarStore {
-    @observable items = {};
+opaque type Item = {
+    id: string,
+    title: string,
+    description: string
+}
 
-    constructor(initialData) {
+opaque type Items = {
+   [date: string]: Item[]
+}
+
+opaque type InitialData = {
+    items: Items
+}
+
+class CalendarStore {
+    @observable items: Items = {};
+
+    constructor(initialData: InitialData) {
         this.setItems(initialData && initialData.items);
     }
 
     @action
-    setItems(items) {
+    setItems(items: Items) {
         this.items = items;
     }
 
     @action
-    updateEvent(isoDate, id, title, description) {
-        const item = this.items[isoDate].find(item => item.id === id);
+    updateEvent(isoDate: string, id: string, title: string, description: string) {
+        const item: Item | any = this.items[isoDate].find((item: Item): boolean => item.id === id);
         item.title = title;
         item.description = description;
     }
 
     @action
-    createEvent(isoDate, id, title, description) {
+    createEvent(isoDate: string, id: string, title: string, description: string) {
         const item = {id, title, description};
         const array = this.items[isoDate] || [];
         array.push(item);
@@ -33,8 +48,8 @@ class CalendarStore {
     }
 
     @action
-    async fetch() {
-        const response = await axios.get(`${BASE_URL || ''}/static/data/calendar.json`);
+    async fetch(): Promise<any> {
+        const response: AxiosResponse = await axios.get(`${BASE_URL || ''}/static/data/calendar.json`);
         this.setItems(response.data);
         return {items: response.data};
     }

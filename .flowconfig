@@ -1,14 +1,12 @@
-[include]
-./node_modules/mobx/lib/mobx.js.flow
-./flow-typed/next.js.flow
-
 [ignore]
-.*/node_modules/.*
+
+[include]
 
 [libs]
 
 [lints]
 
 [options]
+esproposal.decorators=ignore
 
 [strict]

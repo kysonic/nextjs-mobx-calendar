@@ -1,8 +1,19 @@
+// @flow
+import * as React from 'react';
 import Head from 'next/head';
 import Header from '../ui/Header';
 import {inject} from 'mobx-react';
+import App from '../../../stores/app';
 
-export default inject('appStore')((props) => (
+type ReactNodeWithoutStringsType = React.ChildrenArray<| void | null | boolean | React.Element<any>>;
+
+opaque type Props = {
+    title: string,
+    appStore: App,
+    children?: ReactNodeWithoutStringsType
+};
+
+export default inject('appStore')((props: Props): any => (
     <div>
         <Head>
             <title>{props.title}</title>

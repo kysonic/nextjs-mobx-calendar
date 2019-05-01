@@ -1,23 +1,28 @@
+// @flow
 import {observable, action} from 'mobx';
-import axios from "axios/index";
+import axios, {AxiosResponse} from "axios/index";
 
 const BASE_URL = process.env.BASE_URL;
 
-class TextStore {
-    @observable text;
+opaque type InitialData = {
+    text: string
+}
 
-    constructor(initialData) {
+class TextStore {
+    @observable text: string;
+
+    constructor(initialData: InitialData) {
         this.setText(initialData && initialData.text);
     }
 
     @action
-    setText(text) {
+    setText(text: string) {
         this.text = text;
     }
 
     @action
-    async fetch() {
-        const response = await axios.get(`${BASE_URL || ''}/static/data/text.json`);
+    async fetch(): Promise<void> {
+        const response: AxiosResponse = await axios.get(`${BASE_URL || ''}/static/data/text.json`);
         this.setText(response.data.text);
         return response.data;
     }
