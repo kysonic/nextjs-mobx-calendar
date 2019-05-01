@@ -1,10 +1,11 @@
+// @flow
 import App, { Container } from 'next/app';
 import React from 'react';
 import {initializeStore} from '../stores/app';
 import { Provider } from 'mobx-react';
 
 class CalendarApp extends App {
-    static async getInitialProps(appContext) {
+    static async getInitialProps(appContext: any) {
         const appStore = initializeStore();
         // Initialize all stores
         await appStore.navigationStore.fetchItems();
@@ -16,7 +17,7 @@ class CalendarApp extends App {
         };
     }
 
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         this.appStore = initializeStore(props.initialState);
     }
@@ -29,7 +30,7 @@ class CalendarApp extends App {
                     <Component {...pageProps} />
                 </Provider>
             </Container>
-        )
+        );
     }
 }
 

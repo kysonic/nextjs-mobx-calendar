@@ -1,7 +1,18 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import type {Node} from 'react';
 
-class Popup extends React.Component {
+opaque type PopupProps = {
+    children?: Node
+};
+
+opaque type PopupState = {
+    opened: boolean
+};
+
+class Popup extends React.Component<PopupProps, PopupState> {
     state = {
         opened: false
     };
@@ -53,6 +64,6 @@ class Popup extends React.Component {
             document.body
         );
     }
-};
+}
 
 export default Popup;

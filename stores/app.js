@@ -15,27 +15,27 @@ opaque type InitialDataType = {
     dateStore: DateStore
 };
 
-class App {
+class AppStore {
 
     navigationStore: NavigationStore;
 
     dateStore: DateStore;
 
-    constructor(initialData: InitialDataType) {
+    constructor(initialData?: InitialDataType) {
         this.navigationStore = new NavigationStore(initialData && initialData.navigationStore);
         this.dateStore = new DateStore(new Date().toISOString());
     }
 }
 
-export default App;
+export default AppStore;
 
-export function initializeStore(initialData: InitialDataType) {
+export function initializeStore(initialData?: InitialDataType) {
     if (isServer) {
-        return new App(initialData);
+        return new AppStore(initialData);
     }
 
     if (!window.appStore) {
-        window.appStore = new App(initialData);
+        window.appStore = new AppStore(initialData);
     }
     return window.appStore;
 }

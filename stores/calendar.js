@@ -4,19 +4,19 @@ import axios, {AxiosResponse} from "axios/index";
 
 const BASE_URL = process.env.BASE_URL;
 
-opaque type Item = {
+export type Item = {
     id: string,
     title: string,
     description: string
-}
+};
 
 opaque type Items = {
    [date: string]: Item[]
-}
+};
 
 opaque type InitialData = {
     items: Items
-}
+};
 
 class CalendarStore {
     @observable items: Items = {};

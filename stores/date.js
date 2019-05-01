@@ -1,7 +1,10 @@
+// @flow
+
 import {observable, computed, action} from 'mobx';
 
 class DateStore {
     @observable ISODate: string;
+
     @observable ISODateToday: string;
 
     constructor(date: string) {
@@ -43,7 +46,7 @@ class DateStore {
 
     @computed get firstMonthDay(): number {
         const day: number = new Date(this.year, this.month, 1).getDay();
-        return day ? day : 7;
+        return day || 7;
     }
 
     @computed get dateToday(): Date {

@@ -1,12 +1,13 @@
 // @flow
 import {observable, action} from 'mobx';
-import axios, {AxiosResponse} from "axios/index";
+import axios from 'axios';
+import type {AxiosResponse} from 'axios';
 
 const BASE_URL = process.env.BASE_URL;
 
 opaque type InitialData = {
     text: string
-}
+};
 
 class TextStore {
     @observable text: string;

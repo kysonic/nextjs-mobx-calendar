@@ -1,10 +1,15 @@
+// @flow
+import React from 'react';
 import Link from 'next/link';
 import {observer, inject} from 'mobx-react';
+import App from '../../../stores/app';
+import type {ItemType} from '../../../stores/navigation';
+import type {Node} from 'react';
 
-const HeaderLinkItems = (title, items) => (
+const HeaderLinkItems = (title: string, items: ItemType[]): Node => (
     <nav>
         <span className="title">{title}</span>
-        <ul className="sub-items">{items.map(link => <li key={link.id}><HeaderLink link={link} /></li>)}</ul>
+        <ul className="sub-items">{items.map((link: ItemType): Node => <li key={link.id}><HeaderLink link={link} /></li>)}</ul>
         <style jsx>
             {`
                 .title {
@@ -26,25 +31,39 @@ const HeaderLinkItems = (title, items) => (
     </nav>
 );
 
-const HeaderLink = ({link}) => link.items ? HeaderLinkItems(link.title, link.items) :
-    (
+opaque type HeaderLinkProps = {
+    link: ItemType
+};
+
+const HeaderLink = ({link}: HeaderLinkProps): Node => {
+    if (link.items && link.items.length) {
+        return HeaderLinkItems(link.title, link.items);
+    }
+
+    return (
         <Link href={link.href}>
-            <a>{link.title}</a>
+            <span>{link.title}</span>
         </Link>
     );
+};
 
-const Header = inject('appStore')(observer(({appStore: {navigationStore}}) => {
-    return (
-        <nav>
-            <ul>
-                {
-                    navigationStore && navigationStore.items && navigationStore.items.map((link) => (
-                        <li key={link.id} ><HeaderLink link={link} /></li>
-                    ))
-                }
-            </ul>
-            <style jsx>
-                {`
+opaque type HeaderProps = {
+    appStore: App
+};
+
+const Header = inject('appStore')(observer(({ appStore: { navigationStore } }: HeaderProps) => (
+    <nav>
+        <ul>
+            {
+                navigationStore && navigationStore.items && navigationStore.items.map((link: ItemType) => (
+                    <li key={link.id}>
+                        <HeaderLink link={link} />
+                    </li>
+                ))
+            }
+        </ul>
+        <style jsx>
+            {`
                     nav {
                         width: 100%;
                         height: 40px;
@@ -64,9 +83,9 @@ const Header = inject('appStore')(observer(({appStore: {navigationStore}}) => {
                         color: #666;
                     }
                 `}
-            </style>
-            <style>
-                {`
+        </style>
+        <style>
+            {`
                      ul li:hover .sub-items {
                         display: block;
                      }
@@ -77,9 +96,8 @@ const Header = inject('appStore')(observer(({appStore: {navigationStore}}) => {
                         color: #444;
                      }
                 `}
-            </style>
-        </nav>
-    );
-}));
+        </style>
+    </nav>
+)));
 
 export default Header;

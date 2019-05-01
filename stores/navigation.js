@@ -6,17 +6,19 @@ import {AxiosResponse} from "axios/index";
 
 const BASE_URL = process.env.BASE_URL;
 
-opaque type Item = {
+export type ItemType = {
     id: string,
     title: string,
-    href: string
-}
+    href: string,
+    items?: ItemType[]
+};
 
 class NavigationStore {
-    @observable items: Item[] = [];
+    @observable items: ItemType[] = [];
+
     @observable isInit: boolean = false;
 
-    constructor(navigation: NavigationStore): void {
+    constructor(navigation?: NavigationStore): void {
         this.items = navigation ? navigation.items : [];
     }
 
@@ -31,7 +33,7 @@ class NavigationStore {
     }
 
     @action
-    setItems(items: Item[]): void {
+    setItems(items: ItemType[]): void {
         this.items = items;
     }
 

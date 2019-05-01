@@ -1,10 +1,11 @@
+// @flow
 import React from 'react';
 import {observer} from 'mobx-react';
 
 let titleNode = null;
 let descriptionNode = null;
 
-const generateId = () => Math.random().toString(36).substr(2, 9);
+const generateId = (): string => Math.random().toString(36).substr(2, 9);
 
 const CalendarEvent = observer(({calendarStore, event: { event = {title: '', description: ''}, isoDate = '' }, close = () => {}}) => {
     const onSave = () => {
