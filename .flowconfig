@@ -8,5 +8,6 @@
 
 [options]
 esproposal.decorators=ignore
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 
 [strict]

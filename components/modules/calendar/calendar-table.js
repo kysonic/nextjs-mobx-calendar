@@ -63,6 +63,7 @@ const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: Pro
                                             (
                                                 <CalendarCell
                                                     onEventClick={onEventClick}
+                                                    // $FlowFixMe
                                                     events={calendarStore.items[getIsoDateForDay(number + 1)]}
                                                     isoDate={getIsoDateForDay(number + 1)}
                                                     isToday={isToday(number)}
@@ -78,6 +79,7 @@ const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: Pro
                 }
             </tbody>
             {!isServer && (
+                // $FlowFixMe
                 <Popup ref={(el: ?Popup) => popup = el}>
                     <CalendarEvent event={event} close={close} calendarStore={calendarStore} />
                 </Popup>
