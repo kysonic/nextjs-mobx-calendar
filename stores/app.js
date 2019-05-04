@@ -6,7 +6,7 @@ import DateStore from './date';
 import {useStaticRendering} from 'mobx-react';
 
 configure({ enforceActions: 'observed' });
-
+// $FlowFixMe
 const isServer: boolean = !process.browser;
 useStaticRendering(isServer);
 

@@ -2,7 +2,7 @@
 
 import {observable, action} from 'mobx';
 import axios from 'axios';
-import {AxiosResponse} from "axios/index";
+import type {AxiosResponse} from 'axios';
 
 const BASE_URL = process.env.BASE_URL;
 
@@ -23,13 +23,14 @@ class NavigationStore {
     }
 
     @action
-    async fetchItems(): any {
+    async fetch(): any {
         if (this.isInit) {
             return this.items;
         }
         const response: AxiosResponse = await axios.get(`${BASE_URL || ''}/static/data/navigation.json`);
         this.setItems(response.data);
         this.setIsInit(true);
+        return response.data;
     }
 
     @action
