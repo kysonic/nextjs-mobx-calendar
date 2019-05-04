@@ -2,14 +2,14 @@
 
 import React from 'react';
 import {observer} from 'mobx-react';
-import type {Item} from '../../../stores/calendar';
+import type {ItemType} from '../../../stores/calendar';
 
 opaque type CalendarCellProps = {
     isToday: boolean,
     number: number,
-    events: Item[],
+    events: ItemType[],
     isoDate: string,
-    onEventClick: ({event?: Item, isoDate: string}) => {}
+    onEventClick: ({event?: ItemType, isoDate: string}) => {}
 };
 
 const CalendarCell = observer(({isToday, number, events, isoDate, onEventClick}: CalendarCellProps) => (
@@ -17,7 +17,7 @@ const CalendarCell = observer(({isToday, number, events, isoDate, onEventClick}:
         <div className="day">{number}</div>
         {events && (
             <ul className="events">
-                {events.map((event: Item) => (
+                {events.map((event: ItemType) => (
                     <li className="event" key={event.id}>
                         <div role="button" tabIndex="0" className="title" onClick={() => onEventClick({event, isoDate})}>{event.title}</div>
                     </li>

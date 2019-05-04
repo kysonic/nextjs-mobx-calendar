@@ -1,23 +1,51 @@
 // @flow
 import React from 'react';
 import {observer} from 'mobx-react';
+import type CalendarStore, {ItemType} from '../../../stores/calendar';
 
-let titleNode = null;
-let descriptionNode = null;
+opaque type PropsType = {
+    calendarStore: CalendarStore,
+    event: {
+        event: ItemType,
+        isoDate: string
+    },
+    close: <T>() => T
+};
+
+let titleNode: ?HTMLInputElement;
+let descriptionNode: ?HTMLTextAreaElement;
 
 const generateId = (): string => Math.random().toString(36).substr(2, 9);
 
-const CalendarEvent = observer(({calendarStore, event: { event = {title: '', description: ''}, isoDate = '' }, close = () => {}}) => {
+const CalendarEvent = observer(({calendarStore, event: { event = {title: '', description: ''}, isoDate = '' }, close = () => {}}: PropsType) => {
     const onSave = () => {
-        event.id ? calendarStore.updateEvent(isoDate, event.id, titleNode.value, descriptionNode.value) :
-        calendarStore.createEvent(isoDate, generateId(), titleNode.value, descriptionNode.value);
+        if (event.id) {
+            calendarStore.updateEvent(isoDate, event.id, titleNode ? titleNode.value : '', descriptionNode ? descriptionNode.value : '');
+        } else {
+            calendarStore.createEvent(isoDate, generateId(), titleNode ? titleNode.value : '', descriptionNode ? descriptionNode.value : '');
+        }
         close();
     };
     return (
         <div className="calendar-event">
-            <input type="text" ref={(el) => {titleNode = el; el ? el.value = event.title : null}} />
-            <textarea ref={(el) => {descriptionNode = el; el ? el.value = event.description : null}}></textarea>
-            <button onClick={onSave}>{event.id ? 'Update' : 'Create'}</button>
+            <input
+                type="text"
+                ref={(el: HTMLInputElement | null): void => {
+                    titleNode = el;
+                    if (el) {
+                        el.value = event.title;
+                    }
+                }}
+            />
+            <textarea
+                ref={(el: HTMLTextAreaElement | null): void => {
+                    descriptionNode = el;
+                    if (el) {
+                        el.value = event.description;
+                    }
+                }}
+            />
+            <button type="button" onClick={onSave}>{event.id ? 'Update' : 'Create'}</button>
             <style jsx>
                 {`
                     .calendar-event {

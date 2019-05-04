@@ -3,12 +3,12 @@
 import React from 'react';
 import MonthSwitcher from './month-switcher';
 import CalendarTable from './calendar-table';
-import AppStore from '../../../stores/app';
-import CalendarStore from '../../../stores/calendar';
+import type AppStore from '../../../stores/app';
+import type CalendarStore from '../../../stores/calendar';
 
 opaque type CalendarProps = {
     appStore: AppStore,
-    calendarStore: CalendarStore
+    calendarStore?: CalendarStore
 };
 
 const Calendar = (props: CalendarProps) => {

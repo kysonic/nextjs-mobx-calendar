@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import type {Node} from 'react';
 
 opaque type PopupProps = {
+    ref: ?Node,
     children?: Node
 };
 
@@ -29,7 +30,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
         return ReactDOM.createPortal(
             (
                 <div className={`popup ${this.state.opened ? 'is-opened' : ''}`}>
-                    <div className="close" onClick={this.close}>x</div>
+                    <div role="button" tabIndex="0" className="close" onClick={this.close}>x</div>
                     <div className="content">
                         {this.props.children}
                     </div>
@@ -61,7 +62,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
                     </style>
                 </div>
             ),
-            document.body
+            document.body ? document.body : new HTMLElement()
         );
     }
 }
