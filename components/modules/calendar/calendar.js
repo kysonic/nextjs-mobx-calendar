@@ -16,6 +16,7 @@ const Calendar = (props: CalendarProps) => {
     return (
         <div className="calendar">
             <MonthSwitcher dateStore={dateStore} />
+            {/* $FlowFixMe */}
             <CalendarTable calendarStore={calendarStore} dateStore={dateStore} />
         </div>
     );

@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "BASE_URL=http://localhost:3000 next",
     "build": "BASE_URL=http://localhost:3000 next build",
-    "test": "jest"
+    "test": "jest --watch",
+    "test:us": "jest --updateSnapshot"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -31,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "flow-bin": "^0.98.0",
-    "jest": "^24.7.1"
+    "jest": "^24.7.1",
+    "react-test-renderer": "^16.8.6"
   }
 }

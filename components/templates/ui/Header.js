@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {observer, inject} from 'mobx-react';
-import App from '../../../stores/app';
+import type AppStore from '../../../stores/app';
 import type {ItemType} from '../../../stores/navigation';
 import type {Node} from 'react';
 
@@ -48,7 +48,7 @@ const HeaderLink = ({link}: HeaderLinkProps): Node => {
 };
 
 opaque type HeaderProps = {
-    appStore: App
+    appStore: AppStore
 };
 
 const Header = inject('appStore')(observer(({ appStore: { navigationStore } }: HeaderProps) => (

@@ -23,7 +23,7 @@ class AppStore {
 
     constructor(initialData?: InitialDataType) {
         this.navigationStore = new NavigationStore(initialData && initialData.navigationStore);
-        this.dateStore = new DateStore(new Date().toISOString());
+        this.dateStore = new DateStore(initialData ? initialData.dateStore.ISODate : new Date().toISOString());
     }
 }
 

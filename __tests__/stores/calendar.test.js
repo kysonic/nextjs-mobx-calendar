@@ -88,6 +88,8 @@ describe('Test CalendarStore', () => {
     test('Fetch data', async (done) => {
         const data = await calendarStore.fetch();
         expect(data.items).toEqual(CALENDAR_DATA);
+        expect(axios.get).toHaveBeenCalledTimes(1);
+        expect(axios.get).toHaveBeenCalledWith('/static/data/calendar.json');
         autorun(() => {
             expect(calendarStore.items['2019-03-11T00:00:00.000Z'][0].title).toBe('Action 2');
             done();

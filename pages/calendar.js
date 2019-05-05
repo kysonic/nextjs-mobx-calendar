@@ -22,7 +22,10 @@ class CalendarPage extends React.Component<Props> {
     render(): Node {
         return (
             <Layout title="Calendar">
-                {(appStore: AppStore): Node => <Calendar calendarStore={this.props.stores.calendarStore} appStore={appStore} />}
+                {
+                    // $FlowFixMe
+                    (appStore: AppStore): Node => <Calendar calendarStore={this.props.stores.calendarStore} appStore={appStore} />
+                }
             </Layout>
         );
     }

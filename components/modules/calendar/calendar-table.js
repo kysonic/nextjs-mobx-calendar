@@ -9,17 +9,18 @@ import type DateStore from '../../../stores/date';
 import type CalendarStore, {ItemType} from '../../../stores/calendar';
 import type {Node} from 'react';
 
+// $FlowFixMe
 const isServer = !process.browser;
 let popup: ?Popup;
 
-opaque type PropsType = {
+opaque type CalendarTablePropsType = {
     dateStore: DateStore,
     calendarStore: CalendarStore,
     event: ItemType,
     setEvent: <T>(T) => T
 };
 
-const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: PropsType) => {
+const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: CalendarTablePropsType) => {
     const drawNumber = (index: number) => (index >= dateStore.firstMonthDay && index - dateStore.firstMonthDay < dateStore.daysCount ? (index - dateStore.firstMonthDay) + 1 : '');
 
     const getRowsCount = (): number => (Math.ceil(DAYS_IN_MONTH / DAYS_IN_WEEK) + (dateStore.firstMonthDay === 7 ? 1 : 0));

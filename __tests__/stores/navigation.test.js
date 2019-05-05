@@ -43,6 +43,8 @@ describe('Test NavigationStore', () => {
         expect(data).toEqual(NAVIGATION_INITIAL_DATA);
         autorun(() => {
             expect(navigationStore.items[0].title).toBe('Home');
+            expect(axios.get).toHaveBeenCalledTimes(1);
+            expect(axios.get).toHaveBeenCalledWith('/static/data/navigation.json');
             done();
         });
     });

@@ -62,7 +62,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
                     </style>
                 </div>
             ),
-            document.body ? document.body : new HTMLElement()
+            document && document.body ? document.body : new HTMLElement()
         );
     }
 }

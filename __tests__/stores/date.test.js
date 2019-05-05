@@ -2,7 +2,7 @@ import DateStore from '../../stores/date';
 
 const INITIAL_DATE = new Date();
 
-describe('Test NavigationStore', () => {
+describe('Test DateStore', () => {
     let dateStore = null;
 
     beforeEach(() => {

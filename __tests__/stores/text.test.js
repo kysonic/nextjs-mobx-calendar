@@ -31,5 +31,7 @@ describe('Test TextStore', () => {
         const data = await textStore.fetch();
         expect(data).toBe(TEXT_DATA);
         expect(textStore.text).toBe('Welcome to the Mobx Calendar');
+        expect(axios.get).toHaveBeenCalledTimes(1);
+        expect(axios.get).toHaveBeenCalledWith('/static/data/text.json');
     });
 });

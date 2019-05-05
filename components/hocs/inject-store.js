@@ -32,7 +32,7 @@ export function injectStoreHOC(WrappedComponent: ComponentWithStore): AbstractCo
             super(props);
             this.stores = {};
             Object.keys(WrappedComponent.stores).forEach((storeName: string, index: number): void => {
-                this.stores[storeName] = new WrappedComponent.stores[storeName](props.initialState[index]);
+                this.stores[storeName] = new WrappedComponent.stores[storeName](props.initialState ? props.initialState[index] : {});
             });
         }
 
