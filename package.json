@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "BASE_URL=http://localhost:3000 next",
     "build": "BASE_URL=http://localhost:3000 next build",
-    "test": "jest --watch",
-    "test:us": "jest --updateSnapshot",
+    "test": "jest --watch --env=jsdom",
+    "test:us": "jest --updateSnapshot --env=jsdom",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
@@ -34,6 +34,8 @@
     "eslint-plugin-react": "^7.12.4",
     "flow-bin": "^0.98.0",
     "jest": "^24.7.1",
+    "jest-dom": "^3.1.4",
+    "prettier": "^1.17.0",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^7.0.0"
   }

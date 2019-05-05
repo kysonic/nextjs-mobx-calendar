@@ -9,7 +9,7 @@ opaque type TextProps = {
 };
 
 const Text = observer(({textStore}: TextProps) => (
-    <div className="text">
+    <div className="text" data-testid="text">
         {textStore.text}
         <style jsx>
             {`

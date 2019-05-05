@@ -38,4 +38,8 @@ export const CALENDAR_INITIAL_DATA = {
             "description": "Description of action 4"
         }
     ]
-}
+};
+
+export const TEXT_DATA = {
+    "text": "Welcome to the Mobx Calendar"
+};

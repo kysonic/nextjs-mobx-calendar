@@ -11,15 +11,15 @@ opaque type PropsType = {
 const MonthSwitcher = observer(({dateStore}: PropsType) => {
     const prevMonth = () => {
         dateStore.decMonth();
-    }
+    };
     const nextMonth = () => {
         dateStore.incMonth();
-    }
+    };
     return (
-        <div className="month-switcher">
-            <div role="button" tabIndex="0" className="arrow arrow-left" onClick={prevMonth}>{'<'}</div>
-            <div className="month">{MONTHS[dateStore.month]}</div>
-            <div role="button" tabIndex="0" className="arrow arrow-right" onClick={nextMonth}>{'>'}</div>
+        <div className="month-switcher" data-testid="month-switcher">
+            <div role="button" tabIndex="0" className="arrow arrow-left" onClick={prevMonth} data-testid="arrow-left">{'<'}</div>
+            <div className="month" data-testid="month">{MONTHS[dateStore.month]}</div>
+            <div role="button" tabIndex="0" className="arrow arrow-right" onClick={nextMonth} data-testid="arrow-right">{'>'}</div>
             <style jsx>
                 {`
                     .month-switcher {

@@ -2,13 +2,9 @@ import IndexPage from '../../pages/index';
 import renderer from 'react-test-renderer';
 import { Provider } from 'mobx-react';
 import AppStore from '../../stores/app';
-import {APP_INITIAL_DATA} from '../../consts/test-data';
+import {APP_INITIAL_DATA, TEXT_DATA} from '../../consts/test-data';
 
 import axios from 'axios';
-
-const TEXT_DATA = {
-    "text": "Welcome to the Mobx Calendar"
-};
 
 jest.mock('axios');
 axios.get.mockResolvedValue({data: TEXT_DATA});
