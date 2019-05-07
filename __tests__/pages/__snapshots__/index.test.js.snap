@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index page tests Renders without crashes 1`] = `
+<div
+  className="jsx-3569970921"
+>
+  <nav
+    className="jsx-3989381672"
+  >
+    <ul
+      className="jsx-3989381672"
+    >
+      <li
+        className="jsx-3989381672"
+      >
+        <span
+          onClick={[Function]}
+        >
+          Home
+        </span>
+      </li>
+    </ul>
+    <style>
+      
+                     ul li:hover .sub-items {
+                        display: block;
+                     }
+                     ul li a, ul li a:visited, ul li a:active {
+                        color: #666;
+                     }
+                     ul li:hover a {
+                        color: #444;
+                     }
+                
+    </style>
+  </nav>
+  <div
+    className="jsx-3569970921 content"
+  >
+    <div
+      className="jsx-2395214420 text"
+      data-testid="text"
+    >
+      Welcome to the Mobx Calendar
+    </div>
+  </div>
+</div>
+`;

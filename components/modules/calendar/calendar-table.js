@@ -45,10 +45,10 @@ const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: Cal
         }
     };
     return (
-        <table className="calendar-table">
-            <thead>
+        <table className="calendar-table" data-testid="table">
+            <thead data-testid="table-head">
                 <tr>
-                    {DAYS.map((day: number, i: number): Node => <th key={i}>{day}</th>)}
+                    {DAYS.map((day: number, i: number): Node => <th data-testid={day} key={i}>{day}</th>)}
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +59,7 @@ const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: Cal
                                 const number = drawNumber(j + (i * DAYS_IN_WEEK) + 1);
                                 return (
                                     (
-                                        <td key={j}>
+                                        <td key={j} data-testid={`table-cell-${i}-${j}`}>
                                             {number &&
                                             (
                                                 <CalendarCell
@@ -79,12 +79,10 @@ const CalendarTable = observer(({dateStore, calendarStore, event, setEvent}: Cal
                     ))
                 }
             </tbody>
-            {!isServer && (
-                // $FlowFixMe
-                <Popup ref={(el: ?Popup) => popup = el}>
-                    <CalendarEvent event={event} close={close} calendarStore={calendarStore} />
-                </Popup>
-            )}
+            {/* // $FlowFixMe */}
+            <Popup ref={(el: ?Popup) => popup = el}>
+                <CalendarEvent event={event} close={close} calendarStore={calendarStore} />
+            </Popup>
             <style jsx>
                 {`
                     .calendar-table {

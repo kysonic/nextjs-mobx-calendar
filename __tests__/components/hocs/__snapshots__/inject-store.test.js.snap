@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Inject store test Inject few stores 1`] = `
+Array [
+  <h1>
+    TEST DATE COMPONENT
+  </h1>,
+  <div
+    className="date"
+  >
+    3
+  </div>,
+  <h1>
+    TEST REACT COMPONENT
+  </h1>,
+  <div
+    className="content"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>123</p>",
+      }
+    }
+  />,
+]
+`;
+
+exports[`Inject store test Inject one store 1`] = `
+Array [
+  <h1>
+    TEST REACT COMPONENT
+  </h1>,
+  <div
+    className="content"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>123</p>",
+      }
+    }
+  />,
+]
+`;

@@ -24,7 +24,7 @@ const CalendarCell = observer(({isToday, number, events, isoDate, onEventClick}:
                 ))}
             </ul>
         )}
-        <div role="button" className="plus" onClick={() => onEventClick({event: undefined, isoDate})}>+</div>
+        <div data-testid={`add-event-${isoDate}`} role="button" className="plus" onClick={() => onEventClick({event: undefined, isoDate})}>+</div>
         <style jsx>
             {`
                     .calendar-cell {

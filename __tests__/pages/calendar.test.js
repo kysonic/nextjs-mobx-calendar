@@ -3,8 +3,9 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'mobx-react';
 import AppStore from '../../stores/app';
 import {APP_INITIAL_DATA} from '../../consts/test-data';
-
 import axios from 'axios';
+import ReactDOM from "react-dom";
+import {mockCreatePortal} from '../__mocks__/react-dom.mock';
 
 const CALENDAR_DATA = {
     "2019-04-10T00:00:00.000Z": [
@@ -21,8 +22,11 @@ const CALENDAR_DATA = {
     ]
 };
 
+// Mocks
 jest.mock('axios');
 axios.get.mockResolvedValue({data: CALENDAR_DATA});
+jest.mock('react-dom');
+ReactDOM.createPortal = jest.fn(mockCreatePortal);
 
 describe('Calendar page tests', () => {
     test('Renders without crashes', () => {

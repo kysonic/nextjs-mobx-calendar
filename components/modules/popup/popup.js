@@ -13,6 +13,13 @@ opaque type PopupState = {
     opened: boolean
 };
 
+export function getBody(): HTMLBodyElement {
+    try {
+        return document.body;
+    } catch(e) {}
+    return null;
+}
+
 class Popup extends React.Component<PopupProps, PopupState> {
     state = {
         opened: false
@@ -27,10 +34,10 @@ class Popup extends React.Component<PopupProps, PopupState> {
     };
 
     render() {
-        return ReactDOM.createPortal(
+        return getBody() && ReactDOM.createPortal(
             (
-                <div className={`popup ${this.state.opened ? 'is-opened' : ''}`}>
-                    <div role="button" tabIndex="0" className="close" onClick={this.close}>x</div>
+                <div className={`popup ${this.state.opened ? 'is-opened' : ''}`} data-testid="popup">
+                    <div data-testid="popup-close" role="button" tabIndex="0" className="close" onClick={this.close}>x</div>
                     <div className="content">
                         {this.props.children}
                     </div>
@@ -62,7 +69,7 @@ class Popup extends React.Component<PopupProps, PopupState> {
                     </style>
                 </div>
             ),
-            document && document.body ? document.body : new HTMLElement()
+            getBody()
         );
     }
 }

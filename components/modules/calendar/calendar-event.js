@@ -27,9 +27,10 @@ const CalendarEvent = observer(({calendarStore, event: { event = {title: '', des
         close();
     };
     return (
-        <div className="calendar-event">
+        <div className="calendar-event" data-testid="form">
             <input
                 type="text"
+                data-testid="form-input"
                 ref={(el: HTMLInputElement | null): void => {
                     titleNode = el;
                     if (el) {
@@ -44,8 +45,9 @@ const CalendarEvent = observer(({calendarStore, event: { event = {title: '', des
                         el.value = event.description;
                     }
                 }}
+                data-testid="form-textarea"
             />
-            <button type="button" onClick={onSave}>{event.id ? 'Update' : 'Create'}</button>
+            <button type="button" data-testid="form-button" onClick={onSave}>{event.id ? 'Update' : 'Create'}</button>
             <style jsx>
                 {`
                     .calendar-event {

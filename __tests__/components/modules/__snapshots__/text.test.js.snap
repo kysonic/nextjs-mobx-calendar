@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Text component Snap Testing 1`] = `
+<div
+  className="jsx-2395214420 text"
+  data-testid="text"
+>
+  TEST TEXT
+</div>
+`;
