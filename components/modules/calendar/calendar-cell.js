@@ -19,7 +19,7 @@ const CalendarCell = observer(({isToday, number, events, isoDate, onEventClick}:
             <ul className="events">
                 {events.map((event: ItemType) => (
                     <li className="event" key={event.id}>
-                        <div role="button" tabIndex="0" className="title" onClick={() => onEventClick({event, isoDate})}>{event.title}</div>
+                        <div role="button" tabIndex="0" data-testid={`${event.title}-${isoDate}`} className="title" onClick={() => onEventClick({event, isoDate})}>{event.title}</div>
                     </li>
                 ))}
             </ul>

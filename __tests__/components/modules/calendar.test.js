@@ -66,7 +66,7 @@ describe("Test Calendar component", () => {
         expect(getByTestId("popup")).not.toBeVisible();
     });
 
-    test("Popup: From", async () => {
+    test("Popup: Form", async () => {
         const {getByTestId} = render(<Calendar appStore={appStore} calendarStore={calendarStore}/>);
 
         fireEvent.click(getByTestId('add-event-2019-01-02T00:00:00.000Z'));
@@ -75,5 +75,47 @@ describe("Test Calendar component", () => {
         expect(getByTestId('form-input')).toBeVisible();
         expect(getByTestId('form-textarea')).toBeVisible();
         expect(getByTestId('form-button')).toBeVisible();
+
+        fireEvent.change(getByTestId("form-input"), {
+            target: { value: "Test title 1" }
+        });
+
+        expect(getByTestId("form-input").value).toBe('Test title 1');
+
+        fireEvent.change(getByTestId("form-textarea"), {
+            target: { value: "Test description 1" }
+        });
+
+        expect(getByTestId("form-textarea").value).toBe('Test description 1');
+
+        fireEvent.click(getByTestId('form-button'));
+
+        expect(getByTestId("table")).toMatchSnapshot();
+
+        fireEvent.click(getByTestId('Test title 1-2019-01-02T00:00:00.000Z'));
+
+        expect(getByTestId('form')).toBeVisible();
+        expect(getByTestId('form-input')).toBeVisible();
+        expect(getByTestId('form-textarea')).toBeVisible();
+        expect(getByTestId('form-button')).toBeVisible();
+
+        expect(getByTestId("form-input").value).toBe('Test title 1');
+        expect(getByTestId("form-textarea").value).toBe('Test description 1');
+
+        fireEvent.change(getByTestId("form-input"), {
+            target: { value: "Test title upd" }
+        });
+
+        expect(getByTestId("form-input").value).toBe('Test title upd');
+
+        fireEvent.change(getByTestId("form-textarea"), {
+            target: { value: "Test description upd" }
+        });
+
+        expect(getByTestId("form-textarea").value).toBe('Test description upd');
+
+        fireEvent.click(getByTestId('form-button'));
+
+        expect(getByTestId("table")).toMatchSnapshot();
     });
 });
