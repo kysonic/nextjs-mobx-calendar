@@ -8,10 +8,10 @@
   "scripts": {
     "dev": "BASE_URL=http://localhost:3000 next",
     "build": "BASE_URL=http://localhost:3000 next build",
-    "test": "jest --watch --env=jsdom",
-    "test:us": "jest --updateSnapshot --env=jsdom",
-    "test:coverage": "jest --coverage",
-    "e2e": "node __tests__/__e2e__/index"
+    "test:ui": "jest ./__tests__/__ui__/**/*.test.js --watch --env=jsdom",
+    "test:ui:us": "jest ./__tests__/__ui__/**/*.test.js --updateSnapshot --env=jsdom",
+    "test:e2e": "jest ./__tests__/__e2e__/**/*.test.js --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -37,6 +37,7 @@
     "flow-bin": "^0.98.0",
     "jest": "^24.7.1",
     "jest-dom": "^3.1.4",
+    "jest-puppeteer": "^4.1.1",
     "prettier": "^1.17.0",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^7.0.0"
