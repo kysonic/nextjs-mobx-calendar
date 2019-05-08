@@ -1,10 +1,10 @@
-import IndexPage from '../../pages/index';
+import IndexPage from '../../../pages';
 import renderer from 'react-test-renderer';
-import { Provider } from 'mobx-react';
-import AppStore from '../../stores/app';
-import {APP_INITIAL_DATA, TEXT_DATA} from '../../consts/test-data';
+import { Provider } from 'mobx-react/index';
+import AppStore from '../../../stores/app';
+import {APP_INITIAL_DATA, TEXT_DATA} from '../../../consts/test-data';
 
-import axios from 'axios';
+import axios from 'axios/index';
 
 jest.mock('axios');
 axios.get.mockResolvedValue({data: TEXT_DATA});

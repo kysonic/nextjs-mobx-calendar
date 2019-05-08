@@ -1,8 +1,8 @@
-import Layout from '../../../components/templates/layouts/default';
+import Layout from '../../../../components/templates/layouts/default';
 import renderer from 'react-test-renderer';
-import AppStore from '../../../stores/app';
-import {APP_INITIAL_DATA} from '../../../consts/test-data';
-import { Provider } from 'mobx-react';
+import AppStore from '../../../../stores/app';
+import {APP_INITIAL_DATA} from '../../../../consts/test-data';
+import { Provider } from 'mobx-react/index';
 import {inject, observer} from "mobx-react/index";
 
 const TestComponent = inject('appStore')(observer(({ appStore: { dateStore } }) => {

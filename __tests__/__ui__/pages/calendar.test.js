@@ -1,11 +1,11 @@
-import CalendarPage from '../../pages/calendar';
+import CalendarPage from '../../../pages/calendar';
 import renderer from 'react-test-renderer';
-import {Provider} from 'mobx-react';
-import AppStore from '../../stores/app';
-import {APP_INITIAL_DATA} from '../../consts/test-data';
-import axios from 'axios';
+import {Provider} from 'mobx-react/index';
+import AppStore from '../../../stores/app';
+import {APP_INITIAL_DATA} from '../../../consts/test-data';
+import axios from 'axios/index';
 import ReactDOM from "react-dom";
-import {mockCreatePortal} from '../__mocks__/react-dom.mock';
+import {mockCreatePortal} from '../../__mocks__/react-dom.mock';
 
 const CALENDAR_DATA = {
     "2019-04-10T00:00:00.000Z": [

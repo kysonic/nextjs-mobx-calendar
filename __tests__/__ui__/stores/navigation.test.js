@@ -1,6 +1,6 @@
-import NavigationStore from '../../stores/navigation';
-import axios from 'axios';
-import {autorun} from 'mobx';
+import NavigationStore from '../../../stores/navigation';
+import axios from 'axios/index';
+import {autorun} from 'mobx/lib/mobx';
 
 const NAVIGATION_INITIAL_DATA = [
     {

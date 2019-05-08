@@ -1,6 +1,6 @@
-import CalendarStore from '../../stores/calendar';
-import axios from 'axios';
-import {autorun} from 'mobx';
+import CalendarStore from '../../../stores/calendar';
+import axios from 'axios/index';
+import {autorun} from 'mobx/lib/mobx';
 
 const INITIAL_DATE = "2019-02-10T00:00:00.000Z";
 

@@ -1,9 +1,9 @@
-import Calendar from '../../../components/modules/calendar/calendar';
-import MonthSwitcher from '../../../components/modules/calendar/month-switcher';
-import AppStore from '../../../stores/app';
-import CalendarStore from '../../../stores/calendar';
+import Calendar from '../../../../components/modules/calendar/calendar';
+import MonthSwitcher from '../../../../components/modules/calendar/month-switcher';
+import AppStore from '../../../../stores/app';
+import CalendarStore from '../../../../stores/calendar';
 import 'jest-dom/extend-expect';
-import {APP_INITIAL_DATA, CALENDAR_INITIAL_DATA} from '../../../consts/test-data';
+import {APP_INITIAL_DATA, CALENDAR_INITIAL_DATA} from '../../../../consts/test-data';
 import {render, fireEvent, cleanup, waitForDomChange} from 'react-testing-library';
 import {useStaticRendering} from 'mobx-react';
 

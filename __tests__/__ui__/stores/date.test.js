@@ -1,4 +1,4 @@
-import DateStore from '../../stores/date';
+import DateStore from '../../../stores/date';
 
 const INITIAL_DATE = new Date();
 

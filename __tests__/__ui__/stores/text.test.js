@@ -1,5 +1,5 @@
-import TextStore from '../../stores/text';
-import axios from 'axios';
+import TextStore from '../../../stores/text';
+import axios from 'axios/index';
 
 const DEFAULT_TEXT = 'Default text';
 const TEXT_DATA = {

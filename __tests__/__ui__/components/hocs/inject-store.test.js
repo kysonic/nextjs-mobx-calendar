@@ -1,8 +1,8 @@
 import React from 'react';
-import {injectStoreHOC} from '../../../components/hocs/inject-store';
+import {injectStoreHOC} from '../../../../components/hocs/inject-store';
 import renderer from 'react-test-renderer';
-import TextStore from '../../../stores/text';
-import DateStore from '../../../stores/date';
+import TextStore from '../../../../stores/text';
+import DateStore from '../../../../stores/date';
 
 class TestTextComponent extends React.Component {
     render() {

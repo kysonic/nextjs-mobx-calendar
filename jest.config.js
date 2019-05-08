@@ -82,7 +82,8 @@ module.exports = {
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
    modulePathIgnorePatterns: [
        "node_modules",
-       "__mocks__"
+       "__mocks__",
+       "__e2e__"
    ],
 
   // Activates notifications for test results

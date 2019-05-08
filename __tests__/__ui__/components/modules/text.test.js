@@ -1,8 +1,8 @@
-import Text from '../../../components/modules/text/text';
+import Text from '../../../../components/modules/text/text';
 import renderer from 'react-test-renderer';
 import {render, cleanup} from 'react-testing-library';
-import TextStore from '../../../stores/text';
-import {TEXT_DATA} from '../../../consts/test-data';
+import TextStore from '../../../../stores/text';
+import {TEXT_DATA} from '../../../../consts/test-data';
 import 'jest-dom/extend-expect';
 import axios from 'axios';
 

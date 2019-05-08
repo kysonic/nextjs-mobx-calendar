@@ -1,7 +1,7 @@
-import Header from '../../../components/templates/ui/Header';
+import Header from '../../../../components/templates/ui/Header';
 import renderer from 'react-test-renderer';
-import AppStore from '../../../stores/app';
-import {APP_INITIAL_DATA} from '../../../consts/test-data';
+import AppStore from '../../../../stores/app';
+import {APP_INITIAL_DATA} from '../../../../consts/test-data';
 
 
 describe('Test Header Component', () => {

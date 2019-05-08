@@ -10,7 +10,8 @@
     "build": "BASE_URL=http://localhost:3000 next build",
     "test": "jest --watch --env=jsdom",
     "test:us": "jest --updateSnapshot --env=jsdom",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "e2e": "node __tests__/__e2e__/index"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -19,6 +20,7 @@
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "next": "^8.0.3",
+    "puppeteer": "^1.15.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
